@@ -19,7 +19,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-ventas
-    image: Katherinna/innovatech-ventas:latest
+    image: romannunezg/innovatech-ventas:latest
     container_name: innovatech-ventas
     restart: always
     ports:
@@ -39,7 +39,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-despachos
-    image: Katherinna/innovatech-despachos:latest
+    image: romannunezg/innovatech-despachos:latest
     container_name: innovatech-despachos
     restart: always
     ports:
