@@ -1,0 +1,37 @@
+name: Build & Push Backend (Docker Hub)
+
+on:
+  push:
+    branches: ["deploy"]
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Iniciar sesión en Docker Hub
+        run: |
+          echo "${{ secrets.DOCKERHUB_TOKEN }}" \
+          | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+      - name: Construir y publicar imagen Ventas
+        run: |
+          docker build \
+            -f Dockerfile-ventas \
+            -t romannunezg/innovatech-ventas:latest .
+          docker push romannunezg/innovatech-ventas:latest
+
+      - name: Construir y publicar imagen Despachos
+        run: |
+          docker build \
+            -f Dockerfile-despachos \
+            -t romannunezg/innovatech-despachos:latest .
+          docker push romannunezg/innovatech-despachos:latest
