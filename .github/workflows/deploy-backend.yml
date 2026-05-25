@@ -12,8 +12,8 @@ jobs:
     if: github.event.workflow_run.conclusion == 'success'
     env:
       AWS_REGION: us-east-1
-      BACKEND_INSTANCE_ID: i-XXXXXXXXXXXXXXXXX
-      BACKEND_APP_DIR: /home/ec2-user/backend
+      BACKEND_INSTANCE_ID: i-050de843baabcc6f7
+      BACKEND_APP_DIR: /home/ec2-user/backend-innovatech
     steps:
       - name: Descargar código
         uses: actions/checkout@v4
